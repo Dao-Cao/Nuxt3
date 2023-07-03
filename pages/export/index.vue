@@ -1,6 +1,6 @@
 <template>
     <Menu>
-        import
+        export
     </Menu>
 </template>
 

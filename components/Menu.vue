@@ -5,7 +5,7 @@
                 <img class="mx-auto h-10 w-40" src="~/assets/image/custom-logo-login.svg" alt="Your Company" />
             </h1>
             <el-menu>
-                <el-menu-item v-for="menu in Menus" :key="menu.id">
+                <el-menu-item v-for="menu in Menus" :key="menu.id" :class="{ 'is-active': $route.fullPath == menu.to }">
                     <template #title>
                         <el-icon size="2em">
                             <component :is="menu.icon" />
@@ -28,7 +28,7 @@
                 </div>
             </el-header>
             <slot></slot>
-    <!-- <el-dialog v-model="centerDialogVisible" title="情報" width="30%" align-center>
+            <!-- <el-dialog v-model="centerDialogVisible" title="情報" width="30%" align-center>
         <span>管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。</span>
         <template #footer>
             <span class="dialog-footer">
@@ -40,7 +40,6 @@
     </el-dialog> -->
         </el-container>
     </el-container>
-
 </template>
   
 <script lang="ts" setup>
@@ -60,7 +59,7 @@ const Menus = shallowReactive([{
     id: 3,
     title: "ランキング表",
     icon: DataAnalysis,
-    to: "/import"
+    to: "/export"
 }, {
     id: 4,
     title: "採点結果加工",
@@ -73,8 +72,8 @@ const Menus = shallowReactive([{
     to: "/logout"
 }])
 
-// const route = useRoute();
-// console.log(route)
+const route = useRoute();
+console.log(route.fullPath)
 
 </script>
   
