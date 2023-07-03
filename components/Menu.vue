@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import { DataAnalysis, Document, Plus, Setting, User } from '@element-plus/icons-vue'
 
-const Menus = reactive([{
+const Menus = shallowReactive([{
     id: 1,
     title: "実技学科インポート",
     icon: Plus,
