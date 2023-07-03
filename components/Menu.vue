@@ -7,7 +7,7 @@
             <el-menu>
                 <el-menu-item v-for="menu in Menus" :key="menu.id">
                     <template #title>
-                        <el-icon size="2em" >
+                        <el-icon size="2em">
                             <component :is="menu.icon" />
                         </el-icon><nuxt-link :to="menu.to" class="pl-2 font-medium">{{ menu.title }}</nuxt-link>
                     </template>
@@ -17,31 +17,35 @@
         </el-aside>
 
         <el-container>
-            <el-header style="text-align: right; font-size: 12px">
-                <div class="toolbar">
-                    <el-dropdown>
-                        <el-icon style="margin-right: 8px; margin-top: 1px">
-                            <setting />
+            <el-header class="text-right ">
+                <div class="toolbar pr-8">
+                    <el-dropdown class="pr-2">
+                        <el-icon size="2em" @click="centerDialogVisible = true">
+                            <Warning />
                         </el-icon>
-                        <template #dropdown>
-                            <el-dropdown-menu>
-                                <el-dropdown-item>Info</el-dropdown-item>
-                                <el-dropdown-item>Logout</el-dropdown-item>
-                            </el-dropdown-menu>
-                        </template>
                     </el-dropdown>
-                    <span>Tom</span>
+                    <span class="align-middle">SATT_李</span>
                 </div>
             </el-header>
             <slot></slot>
-
+    <!-- <el-dialog v-model="centerDialogVisible" title="情報" width="30%" align-center>
+        <span>管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。</span>
+        <template #footer>
+            <span class="dialog-footer">
+                <el-button type="primary" @click="centerDialogVisible = false">
+                    Close
+                </el-button>
+            </span>
+        </template>
+    </el-dialog> -->
         </el-container>
     </el-container>
+
 </template>
   
 <script lang="ts" setup>
-import { DataAnalysis, Document, Plus, Setting, User } from '@element-plus/icons-vue'
-
+import { DataAnalysis, Document, Plus, Setting, User, Warning } from '@element-plus/icons-vue'
+const centerDialogVisible = ref(false)
 const Menus = shallowReactive([{
     id: 1,
     title: "実技学科インポート",
@@ -61,13 +65,16 @@ const Menus = shallowReactive([{
     id: 4,
     title: "採点結果加工",
     icon: Document,
-    to: "/users"
+    to: "/processing"
 }, {
     id: 5,
     title: "ログアウト",
     icon: Setting,
     to: "/logout"
 }])
+
+// const route = useRoute();
+// console.log(route)
 
 </script>
   
