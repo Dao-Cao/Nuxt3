@@ -1,11 +1,11 @@
 import { sql } from '~~/server/db';
 
 export type UserModel = {
-    id: number;
+    logon: string;
 }
 export const read = async () => {
     const result = await sql({
-        query: "select id  from user",
+        query: "select logon  from user_master",
     })
     return result as UserModel[]
 }

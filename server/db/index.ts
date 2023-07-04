@@ -1,9 +1,9 @@
-import  mysql  from "mysql2/promise";
+import  {createPool}  from "mysql2/promise.js";
 
-const pool = mysql.createPool({
+const pool = createPool({
     host: 'dev5p.in.satt.jp',
     user: 'root',
-    password: "abc123$%&",
+    password: "Abc123$%&",
     database: 'sf-ri'
 });
 
