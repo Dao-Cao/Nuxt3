@@ -64,7 +64,7 @@ const Menus = shallowReactive([{
     id: 4,
     title: "採点結果加工",
     icon: Document,
-    to: "/processing"
+    to: "/process"
 }, {
     id: 5,
     title: "ログアウト",
