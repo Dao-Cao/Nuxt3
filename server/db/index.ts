@@ -1,4 +1,4 @@
-import mysql from "mysql2/promise";
+import  mysql  from "mysql2/promise";
 
 const pool = mysql.createPool({
     host: 'dev5p.in.satt.jp',
@@ -8,11 +8,11 @@ const pool = mysql.createPool({
 });
 
 
-interface Options{
-    query:string;
-    values:any[];
+interface Options {
+    query: string;
+    values?: any[];
 }
-export const sql =async ({query,values} :Options) => {
-    const [rows] = await pool.query(query,values);
+export const sql = async ({ query, values }: Options) => {
+    const [rows] = await pool.query(query, values);
     return rows
 }
