@@ -10,7 +10,7 @@ const data = ref<UserModel[]>([])
 const fetchData = async () => {
     try {
         console.log(123)
-        const result = await $fetch('/api/user')
+        const result = await $fetch('/api/user/list')
         data.value =result.data as UserModel[]
         console.log(data)
     } catch (error) {

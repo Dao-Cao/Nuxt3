@@ -7,7 +7,6 @@ const pool = createPool({
     database: 'sf-ri'
 });
 
-
 interface Options {
     query: string;
     values?: any[];

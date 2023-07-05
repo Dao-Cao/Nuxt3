@@ -4,6 +4,7 @@ import * as userModel from '~~/server/model/user'
 export const  read = async () =>{
     try {
         const result = await userModel.read();
+        console.log("server controller read")
         return {
             data:result
         }
