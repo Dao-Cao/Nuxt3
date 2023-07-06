@@ -18,7 +18,7 @@ const fetchData = async () => {
     }
 }
 onMounted(()=>{
-    fetchData()
+    //fetchData()
 })
 
 const router = useRouter();

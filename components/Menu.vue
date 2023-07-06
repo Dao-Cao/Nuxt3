@@ -1,6 +1,6 @@
 <template>
     <el-container class="bg-dark-purple h-screen p-3 pt-4">
-        <el-aside class="w-72">
+        <el-aside class="w-62">
             <h1 class="origin-left text-2xl duration-300 mt-4 mb-4">
                 <img class="mx-auto h-10 w-40" src="~/assets/image/custom-logo-login.svg" alt="Your Company" />
             </h1>
@@ -17,27 +17,18 @@
         </el-aside>
 
         <el-container>
-            <el-header class="text-right ">
-                <div class="toolbar pr-8">
+            <el-header class="flex text-right " style="align-items: center">
+                <div class="font-bold text-lg">{{ title }}</div>
+                <div class="toolbar pr-8 " style="margin-left: auto;">
                     <el-dropdown class="pr-2">
                         <el-icon size="2em" @click="centerDialogVisible = true">
                             <Warning />
                         </el-icon>
                     </el-dropdown>
-                    <span class="align-middle">SATT_李</span>
+                    <span class="align-middle text-sm">SATT_李ログイン中</span>
                 </div>
             </el-header>
             <slot></slot>
-            <!-- <el-dialog v-model="centerDialogVisible" title="情報" width="30%" align-center>
-        <span>管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。管理者情報です。</span>
-        <template #footer>
-            <span class="dialog-footer">
-                <el-button type="primary" @click="centerDialogVisible = false">
-                    Close
-                </el-button>
-            </span>
-        </template>
-    </el-dialog> -->
         </el-container>
     </el-container>
 </template>
@@ -45,6 +36,7 @@
 <script lang="ts" setup>
 import { DataAnalysis, Document, Plus, Setting, User, Warning } from '@element-plus/icons-vue'
 const centerDialogVisible = ref(false)
+const title = ref('')
 const Menus = shallowReactive([{
     id: 1,
     title: "実技学科インポート",
@@ -57,14 +49,14 @@ const Menus = shallowReactive([{
     to: "/users"
 }, {
     id: 3,
+    title: "最終得点調整",
+    icon: Document,
+    to: "/process"
+}, {
+    id: 4,
     title: "ランキング表",
     icon: DataAnalysis,
     to: "/export"
-}, {
-    id: 4,
-    title: "採点結果加工",
-    icon: Document,
-    to: "/process"
 }, {
     id: 5,
     title: "ログアウト",
@@ -73,11 +65,22 @@ const Menus = shallowReactive([{
 }])
 
 const route = useRoute();
-console.log(route.fullPath)
+watchEffect( () => {
+    const temp = Menus.find(element => route.fullPath == element.to)
+    title.value = temp?.title as string
+})
 
 </script>
   
 <style scoped>
+.el-menu {
+    border: none;
+}
+
+aside {
+    border-right: solid 1px var(--el-menu-border-color);
+}
+
 .layout-container-demo .el-header {
     position: relative;
     background-color: var(--el-color-primary-light-7);

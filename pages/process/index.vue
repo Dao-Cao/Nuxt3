@@ -1,28 +1,25 @@
 <template>
     <Menu>
         <el-main>
+            <div>「調整」セルは編集可能です。</div>
             <el-scrollbar>
-                <el-table :data="tableData" style="width: 100%" height="680">
-                    <el-table-column prop="coutry" label="国" width="140" />
-                    <el-table-column prop="role" label="役割" width="140" />
-                    <el-table-column prop="date" label="ID" width="140" />
-                    <el-table-column prop="username" label="ユーザー姓名" width="140" />
-                    <el-table-column prop="vfd" label="VFD" width="120" slot-scope="scope">
-                        <template #default="scope">
-                            <el-input v-model="scope.row.vfd" @blur="name(scope.row, 'vfd')" />
-                        </template>
+                <el-table :data="tableData" style="width: 100%" height="550px">
+                    <el-table-column prop="coutry" label="国" width="180" />
+                    <el-table-column prop="vfdA" label="競技者A VFD" width="140" />
+                    <el-table-column prop="vfdA1" label="競技者A 学科" width="140" />
+                    <el-table-column prop="vfdB" label="競技者B VFD" width="140" />
+                    <el-table-column prop="vfdB1" label="競技者B 学科" width="140" />
+                    <el-table-column prop="vfdC" label="審査員A 審査結果" width="140" />
+                    <el-table-column prop="vfdC1" label="審査員B 審査結果" width="140" />
+                    <el-table-column prop="total" label="合計" width="120" slot-scope="scope" sortable>
                     </el-table-column>
-                    <el-table-column prop="department" label="学科" width="120" slot-scope="scope">
+                    <el-table-column prop="department" label="調整" width="120" slot-scope="scope" sortable>
                         <template #default="scope">
                             <el-input v-model="scope.row.department" @blur="name(scope.row, 'department')" />
                         </template>
                     </el-table-column>
-                    <el-table-column prop="coach" label="コーチ・審判" width="120" slot-scope="scope">
-                        <template #default="scope">
-                            <el-input v-model="scope.row.coach" @blur="name(scope.row, 'coach')" />
-                        </template>
+                    <el-table-column prop="coach" label="最終合計" width="120" slot-scope="scope" sortable>
                     </el-table-column>
-                    <el-table-column prop="address" label="Address" />
                 </el-table>
             </el-scrollbar>
         </el-main>
@@ -37,25 +34,32 @@ let page = ref(1);
 let pageSize = ref(10);
 
 for (let index = 0; index < 200; index++) {
+    // let item = {
+    //     coutry: index + "Japan",
+    //     role: "審判員",
+    //     username: "SATT_李",
+    //     date: '2016-05-02',
+    //     vfd: "456" + index,
+    //     department: "123456" + index,
+    //     coach: '10.9' + index,
+    //     address: 'No. 189, Grove St, Los Angeles',
+    // }
     let item = {
-        coutry: "Japan",
+        coutry: "Japan" + "_SATT李"+ index ,
         role: "審判員",
         username: "SATT_李",
-        date: '2016-05-02',
-        vfd: "456" + index,
+        vfdA: "10" + index,
+        vfdA1: "20" + index,
+        vfdB: "30" + index,
+        vfdB1: "30" + index,
+        vfdC: "40" + index,
+        vfdC1: "50" + index,
+        total: "100" + index,
         department: "123456" + index,
         coach: '10.9' + index,
-        address: 'No. 189, Grove St, Los Angeles',
     }
     items.push(item)
 
-}
-const pagedTableData = computed(() => {
-    return tableData.slice(pageSize.value * page.value - pageSize.value, pageSize.value * page.value)
-})
-
-function setPage(val) {
-    page.value = val
 }
 function name(params, item) {
     console.log(params)
@@ -64,20 +68,12 @@ function name(params, item) {
         message: `修正後:${params[item]}、APIを呼んでDB更新`,
         type: 'success',
     })
-    //alert(params[item])
 }
-// const item = {
-//     coutry: "Japan",
-//     role: "審判員",
-//     username: "SATT_李",
-//     date: '2016-05-02',
-//     vfd: "456",
-//     department: "123456",
-//     coach: '99.9',
-//     address: 'No. 189, Grove St, Los Angeles',
-// }
-// const tableData = ref(Array.from({ length: 200 }).fill(item))
 const tableData = reactive(items)
 </script>
 
-<style lang="scss" scoped></style>
+<style  >
+.el-main{
+    overflow: hidden;
+}
+</style>
