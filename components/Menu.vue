@@ -21,8 +21,8 @@
                 <div class="font-bold text-lg">{{ title }}</div>
                 <div style="flex-grow: 1;"></div>
                 <div style="display: flex;">
-                    <button style="width:44px"><img height="20" width="28" src="~/assets/image/ic_flag_en.svg"
-                            alt="English"></button>
+                    <!-- <button style="width:44px"><img height="20" width="28" src="~/assets/image/ic_flag_en.svg"
+                            alt="English"></button> -->
                     <!-- <el-dropdown class="pr-2">
                         <el-icon size="2em" @click="centerDialogVisible = true">
                             <Warning />
