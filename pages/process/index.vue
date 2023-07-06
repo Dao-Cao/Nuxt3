@@ -4,7 +4,7 @@
             <div>「調整」セルは編集可能です。</div>
             <el-scrollbar>
                 <el-table :data="tableData" style="width: 100%" height="550px">
-                    <el-table-column prop="coutry" label="国" width="180" />
+                    <el-table-column prop="coutry" label="国" />
                     <el-table-column prop="vfdA" label="競技者A VFD" width="140" />
                     <el-table-column prop="vfdA1" label="競技者A 学科" width="140" />
                     <el-table-column prop="vfdB" label="競技者B VFD" width="140" />

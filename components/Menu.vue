@@ -19,12 +19,15 @@
         <el-container>
             <el-header class="flex text-right " style="align-items: center">
                 <div class="font-bold text-lg">{{ title }}</div>
-                <div class="toolbar pr-8 " style="margin-left: auto;">
-                    <el-dropdown class="pr-2">
+                <div style="flex-grow: 1;"></div>
+                <div style="display: flex;">
+                    <button style="width:44px"><img height="20" width="28" src="~/assets/image/ic_flag_en.svg"
+                            alt="English"></button>
+                    <!-- <el-dropdown class="pr-2">
                         <el-icon size="2em" @click="centerDialogVisible = true">
                             <Warning />
                         </el-icon>
-                    </el-dropdown>
+                    </el-dropdown> -->
                     <span class="align-middle text-sm">SATT_李ログイン中</span>
                 </div>
             </el-header>
@@ -34,8 +37,12 @@
 </template>
   
 <script lang="ts" setup>
+const { $show, $hide } = useNuxtApp();
+$show();
+setTimeout(() => {
+    $hide()
+}, 2000);
 import { DataAnalysis, Document, Plus, Setting, User, Warning } from '@element-plus/icons-vue'
-const centerDialogVisible = ref(false)
 const title = ref('')
 const Menus = shallowReactive([{
     id: 1,
@@ -65,10 +72,11 @@ const Menus = shallowReactive([{
 }])
 
 const route = useRoute();
-watchEffect( () => {
+watchEffect(() => {
     const temp = Menus.find(element => route.fullPath == element.to)
     title.value = temp?.title as string
 })
+
 
 </script>
   
